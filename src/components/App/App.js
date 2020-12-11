@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
+import Feel from '../Feel/Feel'
+import Understand from '../Understand/Understand'
+import Support from '../Support/Support'
+import Comment from '../Comment/Comment'
+
+
+// Redux stuff
+import { HashRouter as Router, Route } from 'react-router-dom'; 
+import { connect } from 'react-redux';
+
 
 class App extends Component {
   render() {
@@ -10,10 +20,17 @@ class App extends Component {
           <h1 className="App-title">Feedback!</h1>
           <h4><i>Don't forget it!</i></h4>
         </header>
-        <br/>
+        <Router>
+          <Route exact path="/" component={Feel}/>
+          <Route path="/understand" component={Understand}/>
+          <Route path="/support" component={Support}/>
+          <Route path="/comment" component={Comment}/>
+        </Router>
       </div>
     );
   }
 }
 
-export default App;
+
+const putStateOnProps = (reduxState) => ({reduxState});
+export default connect(putStateOnProps)(App);
