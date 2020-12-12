@@ -10,24 +10,45 @@ class Feel extends Component {
         feeling: 1
     }
 
-    handleSubmit = () => {
-        let stateKey = Object.keys(this.state)[0]
-        console.log('in submit');
-        console.log(this.state[stateKey])
-        // TO DO input validation with sweetalert? if/else
-        this.props.dispatch({type: 'UPDATE_VALUE', payload: {
-            key: stateKey,
-            value: this.state[stateKey]
-        }})
-    }
+    // static variable can be accessed throughout the component
+    // this one will become the key of the key:value inside state so that this template is dynamic across components.
+    static stateKey;
 
     componentDidMount(){
+        // Object.keys creates an array of strings of every key inside of an object.
+        // this sets the stateKey variable to the first key inside of state, which is feeling.
+        this.stateKey = Object.keys(this.state)[0]
+        // set the state to the value stored in redux.
+        // this is dynamic so that if you come back to this page from a different page, it will become the value that the user set it to previously.
         this.setState({
-            feeling: this.props.reduxState.feeling
+            [this.stateKey]: this.props.reduxState[this.stateKey]
         })
     }
 
+    handleSubmit = () => {
+        // TO DO input validation with sweetalert? if/else
+        // send an object as the payload to the reducer
+        // this is dynamic so it can be used across components
+        this.props.dispatch({type: 'UPDATE_VALUE', payload: {
+            [this.stateKey]: this.state[this.stateKey]
+        }})
+        this.nextPage();
+    }
+
+    // function to move to the next page, this will need to change between components unless I make it dynamic (maybe TODO)
+    nextPage = () => {
+        this.props.history.push('/understand')
+    }
+
+    // function to move to the previous page, this will need to change between components unless I make it dynamic (maybe TODO)
+    previousPage = () => {
+        this.props.history.push('/')
+    }
+
+
     handleChangeFor = (event, input) => {
+        // converting it from string to number before it's set to state, that way if we want to do math later, it will be an integer.
+        // this will need to change ( remove Number() ) for text fields
         this.setState({
                 [input]: Number(event.target.value)
             })
