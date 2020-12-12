@@ -13,9 +13,9 @@ import logger from 'redux-logger';
 
 const feedbackReducer = (
     state = {
-        feeling: 5,
-        understanding: 1,
-        support: 1,
+        feeling: '',
+        understanding: '',
+        support: '',
         comment: ''
     }, 
     action) => {

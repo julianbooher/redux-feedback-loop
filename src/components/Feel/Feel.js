@@ -14,17 +14,16 @@ class Feel extends Component {
     }
 
     componentDidMount(){
-        // Object.keys creates an array of strings of every key inside of an object.
-        // this sets the stateKey variable to the first key inside of state, which is feeling.
-        // this.stateKey = Object.keys(this.state)[0]
-        // set the state to the value stored in redux.
-        // this is dynamic so that if you come back to this page from a different page, it will become the value that the user set it to previously.
+        // set the state to the value stored in redux, the key is based on the const stateKey above the class.
+        // this is dynamic so that if you come back to this page from a different page
+        // it will become the value that the user set it to previously.
         this.setState({
             [stateKey]: this.props.reduxState[stateKey]
         })
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         // TO DO input validation with sweetalert? if/else
         // send an object as the payload to the reducer
         // this is dynamic so it can be used across components
@@ -46,11 +45,21 @@ class Feel extends Component {
 
 
     handleChangeFor = (event, input) => {
+
+        // if this if/else doesn't exist, it puts a 0 there when the number is deleted, probably because of Number(). May be a better workaround.
+        if (!event.target.value){
+            this.setState({
+                [input]:''
+            }) 
+        }
         // converting it from string to number before it's set to state, that way if we want to do math later, it will be an integer.
         // this will need to change ( remove Number() ) for text fields
-        this.setState({
-                [input]: Number(event.target.value)
-            })
+        else{
+            this.setState({
+                    [input]: Number(event.target.value)
+                })
+
+        }
     }
 
     render() {
@@ -67,6 +76,7 @@ class Feel extends Component {
                         min="1" 
                         max="10" 
                         type="number" 
+                        placeholder="1-10"
                         value={this.state[stateKey]} 
                         onChange={(event) => this.handleChangeFor(event, stateKey)} />
                     <button type="submit">Next</button>
