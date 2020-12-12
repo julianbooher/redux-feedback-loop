@@ -4,24 +4,23 @@ import './Feel.css';
 // Redux stuff
 import { connect } from 'react-redux';
 
+// this one will become the key of the key:value inside state so that this template is dynamic across components.
+const stateKey = 'feeling'
+
 class Feel extends Component {
 
     state = {
-        feeling: 1
+        [stateKey]: 1
     }
-
-    // static variable can be accessed throughout the component
-    // this one will become the key of the key:value inside state so that this template is dynamic across components.
-    static stateKey;
 
     componentDidMount(){
         // Object.keys creates an array of strings of every key inside of an object.
         // this sets the stateKey variable to the first key inside of state, which is feeling.
-        this.stateKey = Object.keys(this.state)[0]
+        // this.stateKey = Object.keys(this.state)[0]
         // set the state to the value stored in redux.
         // this is dynamic so that if you come back to this page from a different page, it will become the value that the user set it to previously.
         this.setState({
-            [this.stateKey]: this.props.reduxState[this.stateKey]
+            [stateKey]: this.props.reduxState[stateKey]
         })
     }
 
@@ -30,7 +29,7 @@ class Feel extends Component {
         // send an object as the payload to the reducer
         // this is dynamic so it can be used across components
         this.props.dispatch({type: 'UPDATE_VALUE', payload: {
-            [this.stateKey]: this.state[this.stateKey]
+            [stateKey]: this.state[stateKey]
         }})
         this.nextPage();
     }
@@ -64,12 +63,12 @@ class Feel extends Component {
                 <h1>How are you feeling today?</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input  
-                        required min="1" 
+                        required 
+                        min="1" 
                         max="10" 
                         type="number" 
-                        placeholder="1-10" 
-                        value={this.state.feeling} 
-                        onChange={(event) => this.handleChangeFor(event, 'feeling')} />
+                        value={this.state[stateKey]} 
+                        onChange={(event) => this.handleChangeFor(event, stateKey)} />
                     <button type="submit">Next</button>
                 </form>
             </div>
