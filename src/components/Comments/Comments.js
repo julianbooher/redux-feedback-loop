@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import './Comments.css';
 
+// material-ui
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
 // Redux stuff
 import { connect } from 'react-redux';
+
+// material-ui
+const styles = theme => ({
+    textField: {
+      width: 250
+    },
+   
+  });
 
 // this one will become the key of the key:value inside state so that this template is dynamic across components.
 const stateKey = 'comments'
@@ -53,26 +66,40 @@ class Comments extends Component {
         }
 
     render() {
+
+        // material-ui
+        const { classes } = this.props; 
+
         return (
             <div>
-                {JSON.stringify(this.state)}
-                <br>
-                </br>
-                {JSON.stringify(this.props.reduxState)}
-                <h1>Any comments you would like to?</h1>
+                <h1>Any comments you would like to add?</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <input  
-                        type="text" 
-                        placeholder="Comment"
+                    <TextField  
+                        autoFocus
+                        id="standard-multiline-static"
+                        className={classes.textField}
+                        label="Comments (optional)"
+                        multiline
+                        rows="4"
+                        inputProps={{ maxLength: 250 }}
                         value={this.state[stateKey]} 
                         onChange={(event) => this.handleChangeFor(event, stateKey)} />
-                    <button type="submit">Next</button>
+                        <br></br>
+                    <Button 
+                        variant="contained"
+                        type="submit">
+                        Next
+                    </Button>
                 </form>
-                <button onClick={this.previousPage}>Previous</button>
+                <Button 
+                    variant="contained"
+                    onClick={this.previousPage}>
+                    Previous
+                </Button>
             </div>
         )
     }
 }
 
 const putStateOnProps = (reduxState) => ({reduxState});
-export default connect(putStateOnProps)(Comments);
+export default connect(putStateOnProps)(withStyles(styles)(Comments));
