@@ -3,27 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 
-// Redux
 
 // MAY NEED TO ADD combineReducers to redux import
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
 
+// base redux state for feedbackReducer
+const baseFeedback = {
+    feeling: '',
+    understanding: '',
+    support: '',
+    comments: ''
+}
 
 const feedbackReducer = (
-    state = {
-        feeling: '',
-        understanding: '',
-        support: '',
-        comment: ''
-    }, 
+    state = baseFeedback, 
     action) => {
-    // TODO set initial state to default initial values, and then add component did mount for each component and set state to feedback reducer. The user can go back and it will retain the previous value that the form had. 
-    //TODO action type
-    // state is an object, so we're just gonna update one key:value pair at a time using the payload.
-    // payload will contain a key and a value.
 
+    // state is an object, so we're just gonna update one key:value pair at a time using the payload.
+    // this action is dynamic, so that no matter which component is calling it, it just updates the value that corresponds to that component.
     if(action.type === 'UPDATE_VALUE'){
         console.log(action.payload);
         let returnState = {
@@ -33,6 +32,12 @@ const feedbackReducer = (
         
         return returnState
     }
+
+    if (action.type === 'RESET_FEEDBACK'){
+        return baseFeedback
+    }
+
+
     return state;
 }
 

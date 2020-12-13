@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './Comment.css';
+import './Comments.css';
 
 // Redux stuff
 import { connect } from 'react-redux';
 
 // this one will become the key of the key:value inside state so that this template is dynamic across components.
-const stateKey = 'comment'
+const stateKey = 'comments'
 
-class Comment extends Component {
+class Comments extends Component {
 
     state = {
         [stateKey]: 1
@@ -75,4 +75,4 @@ class Comment extends Component {
 }
 
 const putStateOnProps = (reduxState) => ({reduxState});
-export default connect(putStateOnProps)(Comment);
+export default connect(putStateOnProps)(Comments);

@@ -19,16 +19,16 @@ router.post('/', (req, res) => {
     const newFeedback = req.body
     console.log(newFeedback);
     res.sendStatus(201);
-    // let sqlText = `INSERT INTO feedback (feeling, understanding, support, comment) VALUES ($1, $2, $3, $4);`
+    let sqlText = `INSERT INTO feedback (feeling, understanding, support, comments) VALUES ($1, $2, $3, $4);`
     // TODO - tighten up sql query for feedback
 
-    // pool.query(sqlText, [newImage.path, newImage.description])
-    //     .then((result) => {
-    //         res.sendStatus(201)
-    //     })
-    //     .catch((err) => {
-    //         console.log('Error in router POST', err)
-    //     })
+    pool.query(sqlText, [newFeedback.feeling, newFeedback.understanding, newFeedback.support, newFeedback.comments])
+        .then((result) => {
+            res.sendStatus(201)
+        })
+        .catch((err) => {
+            console.log('Error in router POST', err)
+        })
 })
 
 // TODO DELETE route

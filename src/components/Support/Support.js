@@ -35,7 +35,7 @@ class Support extends Component {
 
     // function to move to the next page, this will need to change between components unless I make it dynamic (maybe TODO)
     nextPage = () => {
-        this.props.history.push('/comment')
+        this.props.history.push('/comments')
     }
 
     // function to move to the previous page, this will need to change between components unless I make it dynamic (maybe TODO)

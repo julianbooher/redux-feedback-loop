@@ -4,8 +4,9 @@ import './App.css';
 import Feel from '../Feel/Feel'
 import Understand from '../Understand/Understand'
 import Support from '../Support/Support'
-import Comment from '../Comment/Comment'
+import Comments from '../Comments/Comments'
 import Review from '../Review/Review'
+import Success from '../Success/Success'
 
 
 // Redux stuff
@@ -25,8 +26,9 @@ class App extends Component {
           <Route exact path="/" component={Feel}/>
           <Route path="/understand" component={Understand}/>
           <Route path="/support" component={Support}/>
-          <Route path="/comment" component={Comment}/>
+          <Route path="/comments" component={Comments}/>
           <Route path="/review" component={Review}/>
+          <Route path="/success" component={Success}/>
         </Router>
       </div>
     );

@@ -11,6 +11,10 @@ class Review extends Component {
         console.log(this.props.reduxState);
         axios.post('/feedback', this.props.reduxState)
         .then((response) => {
+            // TODO dispatch to reset redux state
+            this.props.dispatch({type: 'RESET_FEEDBACK'})
+            // TODO send user back to success page
+            this.props.history.push('/success')
             console.log(response);
         })
         .catch((error) => {
@@ -20,7 +24,7 @@ class Review extends Component {
 
     // function to move to the previous page, this will need to change between components unless I make it dynamic (maybe TODO)
     previousPage = () => {
-        this.props.history.push('/comment')
+        this.props.history.push('/comments')
     }
     
     render() {
@@ -32,7 +36,7 @@ class Review extends Component {
                 <p>Understanding: {this.props.reduxState.understanding}</p>
                 <p>Support: {this.props.reduxState.support}</p>
                 {/* TODO - conditional rendering if comment/not */}
-                <p>Comment: {this.props.reduxState.comment}</p>
+                <p>Comments: {this.props.reduxState.comments}</p>
                 <button onClick={this.previousPage}>Previous</button>
                 <button onClick={this.submitFeedback}>Submit</button>
             </div>
