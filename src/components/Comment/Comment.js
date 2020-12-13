@@ -36,12 +36,12 @@ class Comment extends Component {
     // function to move to the next page, this will need to change between components unless I make it dynamic (maybe TODO)
     nextPage = () => {
         // TODO go to final page
-        // this.props.history.push('/support')
+        this.props.history.push('/review')
     }
 
     // function to move to the previous page, this will need to change between components unless I make it dynamic (maybe TODO)
     previousPage = () => {
-        this.props.history.push('/')
+        this.props.history.push('/support')
     }
 
 
@@ -59,7 +59,7 @@ class Comment extends Component {
                 <br>
                 </br>
                 {JSON.stringify(this.props.reduxState)}
-                <h1>Any comments you would like to leave?</h1>
+                <h1>Any comments you would like to?</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input  
                         type="text" 

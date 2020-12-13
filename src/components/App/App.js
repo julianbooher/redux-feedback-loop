@@ -5,6 +5,7 @@ import Feel from '../Feel/Feel'
 import Understand from '../Understand/Understand'
 import Support from '../Support/Support'
 import Comment from '../Comment/Comment'
+import Review from '../Review/Review'
 
 
 // Redux stuff
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/understand" component={Understand}/>
           <Route path="/support" component={Support}/>
           <Route path="/comment" component={Comment}/>
+          <Route path="/review" component={Review}/>
         </Router>
       </div>
     );
