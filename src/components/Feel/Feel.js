@@ -23,7 +23,8 @@ const styles = theme => ({
 
 
 
-// this one will become the key of the key:value inside state so that this template is dynamic across components.
+// whatever string is assigned to this variable will become the key of the key:value inside state 
+// makes this template dynamic across components.
 const stateKey = 'feeling'
 
 class Feel extends Component {
