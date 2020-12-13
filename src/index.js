@@ -17,6 +17,8 @@ const baseFeedback = {
     comments: ''
 }
 
+
+// reducer to store the feedback, the state is initialized to the baseFeedback variable above
 const feedbackReducer = (
     state = baseFeedback, 
     action) => {
@@ -33,6 +35,7 @@ const feedbackReducer = (
         return returnState
     }
 
+    // resets the feedbackReducer state using the baseFeedback variable
     if (action.type === 'RESET_FEEDBACK'){
         return baseFeedback
     }

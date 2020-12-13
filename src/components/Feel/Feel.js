@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import './Feel.css';
 
+// material-ui
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
 // Redux stuff
 import { connect } from 'react-redux';
+
+// material-ui
+const styles = theme => ({
+    textField: {
+      width: 120
+    },
+   
+  });
+
+
 
 // this one will become the key of the key:value inside state so that this template is dynamic across components.
 const stateKey = 'feeling'
@@ -58,23 +73,34 @@ class Feel extends Component {
     }
 
     render() {
+
+        // material-ui
+        const { classes } = this.props;
+
         return (
             <div>
-                {JSON.stringify(this.state)}
-                <br>
-                </br>
-                {JSON.stringify(this.props.reduxState)}
                 <h1>How are you feeling today?</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <input  
+                    <TextField
+                        autoFocus
+                        id="standard-number"
+                        className={classes.textField}
+                        label="Number 1-10"  
                         required 
-                        min="1" 
-                        max="10" 
+                        InputProps={{
+                            inputProps: { 
+                                max: 10, min: 1 
+                            }
+                        }}
                         type="number" 
-                        placeholder="1-10"
                         value={this.state[stateKey]} 
                         onChange={(event) => this.handleChangeFor(event, stateKey)} />
-                    <button type="submit">Next</button>
+                        <br></br>
+                    <Button
+                        variant="contained"
+                        type="submit">
+                        Next
+                    </Button>
                 </form>
             </div>
         )
@@ -82,4 +108,4 @@ class Feel extends Component {
 }
 
 const putStateOnProps = (reduxState) => ({reduxState});
-export default connect(putStateOnProps)(Feel);
+export default connect(putStateOnProps)(withStyles(styles)(Feel));
