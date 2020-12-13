@@ -68,6 +68,7 @@ class Comment extends Component {
                         onChange={(event) => this.handleChangeFor(event, stateKey)} />
                     <button type="submit">Next</button>
                 </form>
+                <button onClick={this.previousPage}>Previous</button>
             </div>
         )
     }

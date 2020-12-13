@@ -38,11 +38,6 @@ class Feel extends Component {
         this.props.history.push('/understand')
     }
 
-    // function to move to the previous page, this will need to change between components unless I make it dynamic (maybe TODO)
-    previousPage = () => {
-        this.props.history.push('/')
-    }
-
 
     handleChangeFor = (event, input) => {
 
