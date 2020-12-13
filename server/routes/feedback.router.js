@@ -17,8 +17,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const newFeedback = req.body
-    console.log(newFeedback);
-    res.sendStatus(201);
     let sqlText = `INSERT INTO feedback (feeling, understanding, support, comments) VALUES ($1, $2, $3, $4);`
     // TODO - tighten up sql query for feedback
 
