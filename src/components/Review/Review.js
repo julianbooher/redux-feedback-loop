@@ -5,6 +5,9 @@ import './Review.css';
 // material-ui
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import SendIcon from '@material-ui/icons/Send';
+
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -74,6 +77,7 @@ class Review extends Component {
                     variant="contained"
                     disabled>
                         Submit
+                        <SendIcon className={classes.rightIcon}/>
                     </Button>
                 </>
                 :
@@ -83,6 +87,7 @@ class Review extends Component {
                     variant="contained"
                     onClick={this.submitFeedback}>
                     Submit
+                    <SendIcon className={classes.rightIcon}/>
                 </Button>
 
                 }
@@ -91,6 +96,7 @@ class Review extends Component {
                     className={classes.button}
                     variant="contained"
                     onClick={this.previousPage}>
+                    <ArrowBackIcon className={classes.leftIcon} />
                     Previous
                 </Button>
             </div>

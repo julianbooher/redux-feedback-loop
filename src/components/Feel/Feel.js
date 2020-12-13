@@ -4,6 +4,7 @@ import './Feel.css';
 // material-ui
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { withStyles } from '@material-ui/core/styles';
 
 // Redux stuff
@@ -13,6 +14,9 @@ import { connect } from 'react-redux';
 const styles = theme => ({
     textField: {
       width: 120
+    },
+    rightIcon: {
+        marginLeft: theme.spacing.unit,
     },
 
   });
@@ -105,6 +109,7 @@ class Feel extends Component {
                         variant="contained"
                         type="submit">
                         Next
+                        <ArrowForwardIcon className={classes.rightIcon} />
                     </Button>
                 </form>
             </div>

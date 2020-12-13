@@ -5,6 +5,8 @@ import './Understand.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -14,7 +16,12 @@ const styles = theme => ({
     textField: {
       width: 120
     },
-   
+    rightIcon: {
+        marginLeft: theme.spacing.unit,
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit,
+    },
   });
 
 // this one will become the key of the key:value inside state so that this template is dynamic across components.
@@ -104,12 +111,14 @@ class Understand extends Component {
                         variant="contained"
                         type="submit">
                         Next
+                        <ArrowForwardIcon className={classes.rightIcon} />
                     </Button>
                 </form>
                 <Button 
                     className={classes.button}
                     variant="contained"
                     onClick={this.previousPage}>
+                    <ArrowBackIcon className={classes.leftIcon} />
                     Previous
                 </Button>
             </div>
