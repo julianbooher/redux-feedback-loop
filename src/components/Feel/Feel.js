@@ -14,7 +14,7 @@ const styles = theme => ({
     textField: {
       width: 120
     },
-   
+
   });
 
 
@@ -40,11 +40,15 @@ class Feel extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         // TO DO input validation with sweetalert? if/else
-        // send an object as the payload to the reducer
-        // this is dynamic so it can be used across components
-        this.props.dispatch({type: 'UPDATE_VALUE', payload: {
-            [stateKey]: this.state[stateKey]
-        }})
+
+        // if compares the state to the reduxState, if they're the same, the dispatch is unecessary.
+        if (this.props.reduxState[stateKey] !== this.state[stateKey]){
+            // send an object as the payload to the reducer
+            // this is dynamic so it can be used across components
+            this.props.dispatch({type: 'UPDATE_VALUE', payload: {
+                [stateKey]: this.state[stateKey]
+            }})
+        }
         this.nextPage();
     }
 
@@ -97,6 +101,7 @@ class Feel extends Component {
                         onChange={(event) => this.handleChangeFor(event, stateKey)} />
                         <br></br>
                     <Button
+                        className={classes.button}
                         variant="contained"
                         type="submit">
                         Next

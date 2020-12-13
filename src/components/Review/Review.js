@@ -2,20 +2,33 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Review.css';
 
+// material-ui
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
 // Redux stuff
 import { connect } from 'react-redux';
+
+// material-ui
+const styles = theme => ({
+      leftIcon: {
+        marginRight: theme.spacing.unit,
+      },
+      rightIcon: {
+        marginLeft: theme.spacing.unit,
+      },
+   
+  });
 
 class Review extends Component {
 
     submitFeedback = () => {
-        console.log(this.props.reduxState);
         axios.post('/feedback', this.props.reduxState)
         .then((response) => {
             // TODO dispatch to reset redux state
             this.props.dispatch({type: 'RESET_FEEDBACK'})
             // TODO send user back to success page
             this.props.history.push('/success')
-            console.log(response);
         })
         .catch((error) => {
             console.log('Error in client POST', error)
@@ -26,23 +39,64 @@ class Review extends Component {
     previousPage = () => {
         this.props.history.push('/comments')
     }
+
+    disabledSubmit = () => {
+        if(this.props.reduxState.feeling === '' || 
+        this.props.reduxState.understanding === '' || 
+        this.props.reduxState.support === ''){
+            return 'true';
+        }
+        return 'false';
+    }
     
     render() {
+
+        // material-ui
+        const { classes } = this.props;
+
         return (
             <div>
-                {JSON.stringify(this.props.reduxState)}
                 <h1>Review Your Feedback</h1>
                 <p>Feeling: {this.props.reduxState.feeling}</p>
                 <p>Understanding: {this.props.reduxState.understanding}</p>
                 <p>Support: {this.props.reduxState.support}</p>
-                {/* TODO - conditional rendering if comment/not */}
+                {/* TODO - conditional rendering if comment/not? */}
                 <p>Comments: {this.props.reduxState.comments}</p>
-                <button onClick={this.previousPage}>Previous</button>
-                <button onClick={this.submitFeedback}>Submit</button>
+                
+                {/* conditional rendering disables button if a required field is missing in redux */}
+                {this.props.reduxState.feeling === '' || 
+                this.props.reduxState.understanding === '' || 
+                this.props.reduxState.support === '' ? 
+                <>
+                    <p className="error-message">Missing required field. Go back and fill out every field.</p>
+                    <Button
+                    className={classes.button}
+                    variant="contained"
+                    disabled>
+                        Submit
+                    </Button>
+                </>
+                :
+                <Button 
+                                        
+                    className={classes.button}
+                    variant="contained"
+                    onClick={this.submitFeedback}>
+                    Submit
+                </Button>
+
+                }
+                <br></br>
+                <Button 
+                    className={classes.button}
+                    variant="contained"
+                    onClick={this.previousPage}>
+                    Previous
+                </Button>
             </div>
         )
     }
 }
 
 const putStateOnProps = (reduxState) => ({reduxState});
-export default connect(putStateOnProps)(Review);
+export default connect(putStateOnProps)(withStyles(styles)(Review));

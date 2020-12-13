@@ -99,12 +99,15 @@ class Support extends Component {
                         value={this.state[stateKey]} 
                         onChange={(event) => this.handleChangeFor(event, stateKey)} />
                         <br></br>
-                    <Button                                                         variant="contained"
+                    <Button
+                        className={classes.button}
+                        variant="contained"
                         type="submit">
                         Next
                     </Button>
                 </form>
-                <Button 
+                <Button
+                    className={classes.button}
                     variant="contained"
                     onClick={this.previousPage}>
                     Previous

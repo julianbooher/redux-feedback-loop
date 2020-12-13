@@ -26,7 +26,6 @@ const feedbackReducer = (
     // state is an object, so we're just gonna update one key:value pair at a time using the payload.
     // this action is dynamic, so that no matter which component is calling it, it just updates the value that corresponds to that component.
     if(action.type === 'UPDATE_VALUE'){
-        console.log(action.payload);
         let returnState = {
             ...state,
             ...action.payload
