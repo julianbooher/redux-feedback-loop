@@ -69,7 +69,7 @@ class Support extends Component {
                 <br>
                 </br>
                 {JSON.stringify(this.props.reduxState)}
-                <h1>How supported are you today?</h1>
+                <h1>How well are you being supported?</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input  
                         required 

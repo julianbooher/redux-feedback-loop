@@ -69,7 +69,7 @@ class Understand extends Component {
                 <br>
                 </br>
                 {JSON.stringify(this.props.reduxState)}
-                <h1>How are you understanding today?</h1>
+                <h1>How well are you understanding the content?</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input  
                         required 

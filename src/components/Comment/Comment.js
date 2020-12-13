@@ -59,7 +59,7 @@ class Comment extends Component {
                 <br>
                 </br>
                 {JSON.stringify(this.props.reduxState)}
-                <h1>Comment?</h1>
+                <h1>Any comments you would like to leave?</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input  
                         type="text" 
