@@ -3,7 +3,7 @@
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/julianbooher/redux-feedback-loop.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/julianbooher/redux-feedback-loop.svg?style=social)
 
-# React To-Do list!
+# React/Redux Feedback!
 
 ## Description
 
